@@ -8,6 +8,7 @@ RSpec.describe 'User Registration', type: :request do
             password: 'password',
             password_confirmation: 'password'},
             headers: headers
+
             expect(response_json['status']).to eq 'success'
             expect(response.status).to eq 200
         end
@@ -31,6 +32,7 @@ RSpec.describe 'User Registration', type: :request do
             password: 'password',
             password_confirmation: 'password'},
             headers: headers
+
             expect(response_json['errors']['email']).to eq ['is not an email']
             expect(response.status).to eq 422
         end
@@ -43,6 +45,7 @@ RSpec.describe 'User Registration', type: :request do
             password: 'password',
             password_confirmation: 'password'},
             headers: headers
+            
             expect(response_json['errors']['email']).to eq ['has already been taken']
             expect(response.status).to eq 422
         end
