@@ -1,12 +1,15 @@
 RSpec.describe Api::V1::PerformanceDataController, type: :request do
-    let(:headers) { { HTTP_ACCEPT: 'application/json' } }
+    let(:user) { FactoryBot.create(:user) }
+    let(:credentials) { user.create_new_auth_token }    
+    let(:headers) { { HTTP_ACCEPT: 'application/json' }.merge!(credentials) }
 
     describe 'POST /api/v1/perfomance_data' do
         it 'creates a data entry' do
             post '/api/v1/performance_data', params:
-            { perfomance_data: { data: { message: 'Average' } } }, headers: headers
+            { perfomance_data: { data: { message: 'Average' } } },
+            headers: headers
 
-            entry = PerfomanceData.last
+            entry = PerformanceData.last
             expect(entry.data).to eq 'message' => 'Average'
         end
     end
