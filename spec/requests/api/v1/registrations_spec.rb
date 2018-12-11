@@ -6,7 +6,7 @@ RSpec.describe 'User Registration', type: :request do
             post '/api/v1/auth', params: 
             { email: 'johndoe@email.com',
             password: 'password',
-            password_confirmation: 'password'},
+            password_confirmation: 'password' },
             headers: headers
 
             expect(response_json['status']).to eq 'success'
@@ -19,7 +19,7 @@ RSpec.describe 'User Registration', type: :request do
             post '/api/v1/auth', params: 
             { email: 'johndoe@email.com',
             password: 'password',
-            password_confirmation: 'wrong_password'},
+            password_confirmation: 'wrong_password' },
             headers: headers
             
             expect(response_json['errors']['password_confirmation']).to eq ["doesn't match Password"]
@@ -30,7 +30,7 @@ RSpec.describe 'User Registration', type: :request do
             post '/api/v1/auth', params: 
             { email: 'johndoe@emailcom',
             password: 'password',
-            password_confirmation: 'password'},
+            password_confirmation: 'password' },
             headers: headers
 
             expect(response_json['errors']['email']).to eq ['is not an email']
@@ -43,7 +43,7 @@ RSpec.describe 'User Registration', type: :request do
             post '/api/v1/auth', params: 
             { email: 'johndoe@email.com',
             password: 'password',
-            password_confirmation: 'password'},
+            password_confirmation: 'password' },
             headers: headers
             
             expect(response_json['errors']['email']).to eq ['has already been taken']
